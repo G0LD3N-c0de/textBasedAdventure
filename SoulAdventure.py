@@ -135,10 +135,50 @@ class SoulAdventure:
 
         if choice == 'drink one':
             self.sedated = True
-            print(self.sedated)
+            self.health += 2
+            print(f"You feel better. Your health is now: {self.health}.")
+            print("However, you start to feel a little groggy and it becomes hard to walk.")
+            print(f"You have been sedated! Your sedated status is {self.sedated}")
+            
+            choice = input("Enter 'hallway':").lower()
+            if choice == "hallway":
+                print("You return to the hallway and continue.")
+                self.sacrificial_chamber()
+            else: 
+                print("You return to the hallway and continue.")
+                self.sacrificial_chamber()
+        elif choice == "move on":
+            print("You return to the hallway and continue.")
+            self.sacrificial_chamber()
+        else:
+            print(self.invalid_choice)
+            self.secret_room()
 
     def sacrificial_chamber(self):
         print("--------------------------")
+        print("The hallway opens up to a large dim chamber with torches placed about.")
+        print("You stand at the hallway entrance to the room looking in.")
+        print("You see tables by the torches with various pieces of equipment nearby.")
+        print("It is too dim to tell what is on them from here.")
+        print("You think to yourself: 'Should I walk in and see what is in here or stick to the walls of the chamber and stay in the shadows.")
+
+        choice = input("Type 'investigate chamber' or 'stay in the shadows': ").lower()
+
+        if choice == "investigate chamber": 
+            self.investgate_chamber()
+
+    def investgate_chamber(self):
+        print("You walk boldly into the middle of the chamber.")
+        print("You walk up to one of the tables to investigate.")
+        print("As you get closer, you see... human body parts!")
+        print("You stumble backwards and bump into another table.")
+        print("You turn around to see a man with his scalp cut open and his brain exposed.")
+        print("A strange machine is attached to his brain...")
+        print("'Hello', you hear a soft voice say behind you.")
+        print("You turn around to see an attractive woman standing in front of you.")
+        print("'What are YOU doing here?', she asks.")
+
+        choice = input("Enter 'question her' or 'attack her': ").lower()
 
     def game_over(self):
         print("--------------------------")
