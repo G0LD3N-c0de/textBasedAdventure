@@ -5,6 +5,7 @@ class SoulAdventure:
         self.inventory = []
         self.health = 10
         self.invalid_choice = "Invalid choice. Try again."
+        self.sedated = False
 
         if self.health <= 0:
             self.game_over()
@@ -92,6 +93,7 @@ class SoulAdventure:
             self.hallway()
         else:
             print(self.invalid_choice)
+            self.fight_back()
         
     def hallway(self):
         if "sword" in self.inventory:
@@ -124,7 +126,16 @@ class SoulAdventure:
 
     def secret_room(self):
         print("--------------------------")
-        # Sedative health potion
+        print("A section of the wall crumbles and you step through.")
+        print("You find yourself in a storage room with a locked door on the other end.")
+        print("You see shelves with restraining equipment, transportation tools, and... potions.")
+        print("You walk to shelf with potions. They seem to be health potions but have a greenish tint to them.")
+
+        choice = input("Enter 'drink one' or 'go back': ").lower()
+
+        if choice == 'drink one':
+            self.sedated = True
+            print(self.sedated)
 
     def sacrificial_chamber(self):
         print("--------------------------")
