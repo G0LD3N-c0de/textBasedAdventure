@@ -140,7 +140,7 @@ class SoulAdventure:
             print("--------------------------")
             print(f"You feel better. Your health is now: {self.health}.")
             print("However, you start to feel a little groggy and it becomes hard to walk.")
-            print(f"You have been sedated! Your sedated status is {self.sedated}")
+            print(f"You have been sedated! Your sedated status is {self.sedated}.")
             print("--------------------------")
             
             choice = input("Enter 'hallway':").lower()
@@ -174,7 +174,6 @@ class SoulAdventure:
 
     def investgate_chamber(self):
         print("--------------------------")
-        print("You walk boldly into the middle of the chamber.")
         print("You walk up to one of the tables to investigate.")
         print("As you get closer, you see... human body parts!")
         print("You stumble backwards and bump into another table.")
@@ -182,7 +181,7 @@ class SoulAdventure:
         print("A strange machine is attached to his brain...")
         print("'Hello', you hear a soft voice say behind you.")
         print("You turn around to see an attractive woman standing in front of you.")
-        print("'What are YOU doing out here?', she asks.")
+        print("'What are YOU doing here?', she asks.")
         print("--------------------------")
 
         choice = input("Enter 'question her' or 'attack her': ").lower()
@@ -197,7 +196,7 @@ class SoulAdventure:
 
     def question_her(self):
         print("--------------------------")
-        print("Who are you?, you ask wearily.")
+        print("'Who are you?', you ask wearily.")
         print("'Who am I?', she says with a smile. She steps closer to you.")
         print("'I'm here to help you', she says and takes another stop closer.")
         print("You are unsure who this lady is and she keeps moving closer.")
@@ -265,7 +264,7 @@ class SoulAdventure:
             print("You try to parry the monster but the sedative affects your reflexes.")
             print("You miss the parry and the monsters claws slash accross your chest.")
 
-            time.sleep(3)
+            time.sleep(1)
 
             self.game_over()
         else:
@@ -294,6 +293,7 @@ class SoulAdventure:
             print("It stumbles as it tries to regain its composure.")
             self.health = self.health - 3
             print("You lose 3 health. Your health is now:", self.health, ".")
+            print("--------------------------")
 
             choice = input("Enter 'press the attack' or 'try to escape': ").lower()
 
@@ -323,9 +323,10 @@ class SoulAdventure:
         if self.sedated:
             print("--------------------------")
             print("You press the attack but the sedative affects your reflexes.")
-            print("You miss the attack and the monsters claws slash accross your chest.")
+            print("You miss the attack.")
+            print("The monster grabs you and slits your throat with its claws.")
 
-            time.sleep(3)
+            time.sleep(1)
 
             self.game_over()
         else:
@@ -347,6 +348,7 @@ class SoulAdventure:
             print("While the monster recovers, you search for an exit.")
             print("You see one on the other side of the chamber.")
             print("You make a run for it but the sedative slows you down.")
+            print("--------------------------")
 
             choice = input("Enter 'keep running' or 'try to slow monster': ").lower()
 
@@ -365,6 +367,8 @@ class SoulAdventure:
             print("You make it the door, open it and run through. It leads to a sunlit grove.")
             print("You look behind you to see the monster standing at the chamber entrance.")
             print("A vampire! It cannot come out into the sunlight. You have escaped!")
+
+            time.sleep(1)
 
             self.victory()
  
