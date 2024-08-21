@@ -1,4 +1,4 @@
-
+import time
 class SoulAdventure:
     def __init__(self):
         self.enemies_slain = 0
@@ -13,7 +13,7 @@ class SoulAdventure:
     def start_game(self):
         print("--------------------------")
         print("Welcome to Soul Adventure! Let's get started:")
-        print("You find yourself lying on the ground in a dim, musty cellar.")
+        print("You find yourself lying on the ground in a dim, musty cellar. You are in a cell but the door has been unlocked and left open.")
         print("You don't remember how you got here or where you are.")
         print("You stand up and look around. Straight ahead of you is a locked door. To your left is a dark room. To your right is a hallway that leads further into this strange place.")
         print("Do you want to go into the dark room or go down the hallway?")
@@ -52,8 +52,8 @@ class SoulAdventure:
         print("--------------------------")
         print("You see a shadowy figure in the corner of the room.")
         print("He speaks, 'Another visitor to this place I see...'")
-        print("He moves closer, 'I have been here a long time... I don't know if there is a way out... They like to hurt people...'")
-        print("He pauses, 'Wait... You're one of them, aren't you?'. The stranger pulls out an object that reflects what little light there is. A sword!")
+        print("He moves closer, 'I have been here a while... hiding... I don't know if there is a way out... They hurt people...'")
+        print("He pauses, 'Wait... This was a trap, wasn't it?!', he shouts. The stranger pulls out an object that reflects what little light there is. A sword!")
         ## You're one of them aren't you?
         print("The stranger lunges at you. You try to dodge it but he grazes your upper arm. You lose 3 health.")
         self.health = self.health - 3
@@ -130,23 +130,28 @@ class SoulAdventure:
         print("You find yourself in a storage room with a locked door on the other end.")
         print("You see shelves with restraining equipment, transportation tools, and... potions.")
         print("You walk to shelf with potions. They seem to be health potions but have a greenish tint to them.")
+        print("--------------------------")
 
         choice = input("Enter 'drink one' or 'go back': ").lower()
 
         if choice == 'drink one':
             self.sedated = True
             self.health += 2
+            print("--------------------------")
             print(f"You feel better. Your health is now: {self.health}.")
             print("However, you start to feel a little groggy and it becomes hard to walk.")
             print(f"You have been sedated! Your sedated status is {self.sedated}")
+            print("--------------------------")
             
             choice = input("Enter 'hallway':").lower()
+            
             if choice == "hallway":
-                print("You return to the hallway and continue.")
+                print("You return to the hallway and continue down the corridor.")
                 self.sacrificial_chamber()
             else: 
                 print("You return to the hallway and continue.")
                 self.sacrificial_chamber()
+            
         elif choice == "move on":
             print("You return to the hallway and continue.")
             self.sacrificial_chamber()
@@ -161,6 +166,7 @@ class SoulAdventure:
         print("You see tables by the torches with various pieces of equipment nearby.")
         print("It is too dim to tell what is on them from here.")
         print("You think to yourself: 'Should I walk in and see what is in here or stick to the walls of the chamber and stay in the shadows.")
+        print("--------------------------")
 
         choice = input("Type 'investigate chamber' or 'stay in the shadows': ").lower()
 
@@ -168,6 +174,7 @@ class SoulAdventure:
             self.investgate_chamber()
 
     def investgate_chamber(self):
+        print("--------------------------")
         print("You walk boldly into the middle of the chamber.")
         print("You walk up to one of the tables to investigate.")
         print("As you get closer, you see... human body parts!")
@@ -176,13 +183,172 @@ class SoulAdventure:
         print("A strange machine is attached to his brain...")
         print("'Hello', you hear a soft voice say behind you.")
         print("You turn around to see an attractive woman standing in front of you.")
-        print("'What are YOU doing here?', she asks.")
+        print("'What are YOU doing out here?', she asks.")
+        print("--------------------------")
 
         choice = input("Enter 'question her' or 'attack her': ").lower()
+
+        if choice == "question her":
+            self.question_her()
+        elif choice == "attack her":
+            self.attack_her()
+        else:
+            print(self.invalid_choice)
+            self.investgate_chamber()
+
+    def question_her(self):
+        print("--------------------------")
+        print("Who are you?, you ask wearily.")
+        print("'Who am I?', she says with a smile. She steps closer to you.")
+        print("'I'm here to help you', she says and takes another stop closer.")
+        print("You are unsure who this lady is and she keeps moving closer.")
+        print("--------------------------")
+
+        choice = input("Enter 'let her approach' or 'attack her': ").lower()
+
+        if choice == "let her approach":
+            self.let_her_approach()
+        elif choice == "attack her":
+            self.attack_her()
+        else:
+            print(self.invalid_choice)
+            self.question_her()
+
+    def let_her_approach(self):
+        print("--------------------------")
+        print("You are in a strange place and you decide to trust the woman.")
+        print("She is now standing right in front of you with a soft smile on her face.")
+        print("Suddenly, she swings her arm accross your neck. Blood spurts onto her.")
+        print("You look at her but she is no longer the woman you saw earlier.")
+        print("A horrendous muscular monster stands in front of you with claws and fangs.")
+        print("It lets out a menacing laugh as you fall to the ground.")
+
+        time.sleep(3)
+
+        self.game_over()
+
+    def attack_her(self):
+        if "sword" in self.inventory:
+            print("--------------------------")
+            print("You attack her with your sword.")
+            print("The woman looks at you and lets out a frustrated cry.")
+            print("Suddenly there is no longer a woman standing in front of you.")
+            print("A horrid beast with fangs and claws has replaced her with a slice accross its chest from your sword.")
+            print("'You will regret that,' the beast says in a menacing voice.")
+            print("It lunges at you with its claws.")
+            print("--------------------------")
+
+            choice = input("Enter 'parry' or 'dodge': ").lower()
+
+            if choice == "parry":
+                self.parry()
+            elif choice == "dodge":
+                self.dodge()
+            else:
+                print(self.invalid_choice)
+                self.attack_her()
+        else:
+            print("--------------------------")
+            print("You punch the woman in the face.")
+            print("The woman barely budges. She smiles at you.")
+            print("Suddenly, she swings her arm accross your neck. Blood spurts onto her.")
+            print("You look at her but she is no longer the woman you saw earlier.")
+            print("A horrendous monster stands in front of you with claws and fangs.")
+            print("It lets out a menacing laugh as you fall to the ground.")
+
+            time.sleep(3)
+
+            self.game_over()
+
+    def parry(self):
+        if self.sedated:
+            print("--------------------------")
+            print("You try to parry the monster but the sedative affects your reflexes.")
+            print("You miss the parry and the monsters claws slash accross your chest.")
+
+            time.sleep(3)
+
+            self.game_over()
+        else:
+            print("--------------------------")
+            print("You parry the monster's attack deflecting it and knocking it off balance.")
+            print("It knicked you arm during the parry and you lose 4 health.")
+            self.health = self.health - 4
+            print("Your health is now:", self.health)
+            print("--------------------------")
+
+            choice = input("Enter 'press the attack' or 'try to escape': ").lower()
+
+            if choice == "press the attack":
+                self.press_the_attack()
+            elif choice == "try to escape":
+                self.try_to_escape()
+            else:
+                print(self.invalid_choice)
+                self.parry()
+
+    def dodge(self):
+        if self.sedated:
+            print("--------------------------")
+            print("You try to dodge the monster but the sedative affects your reflexes.")
+            print("You sloppily dodge the monsters attack and it grazes your side.")
+            print("It stumbles as it tries to regain its composure.")
+            self.health = self.health - 3
+            print("You lose 3 health. Your health is now:", self.health, ".")
+
+            choice = input("Enter 'press the attack' or 'try to escape': ").lower()
+
+            if choice == "press the attack":
+                self.press_the_attack()
+            elif choice == "try to escape":
+                self.try_to_escape()
+            else:
+                print(self.invalid_choice)
+                self.dodge()
+        else:
+            print("--------------------------")
+            print("You dodge the monster's attack and it barely misses you.")
+            print("It stumbles as it tries to regain its composure.")
+
+            choice = input("Enter 'press the attack' or 'try to escape': ").lower()
+
+            if choice == "press the attack":
+                self.press_the_attack()
+            elif choice == "try to escape":
+                self.try_to_escape()
+            else:
+                print(self.invalid_choice)
+                self.dodge()
+
+    def press_the_attack(self):
+        if self.sedated:
+            print("--------------------------")
+            print("You press the attack but the sedative affects your reflexes.")
+            print("You miss the attack and the monsters claws slash accross your chest.")
+
+            time.sleep(3)
+
+            self.game_over()
+        else:
+            print("--------------------------")
+            print("With your opening, you press the attack and drive your sword through the monsters torso.")
+            print("It cries as it starts to burn. A vampire! And this must be a silver sword.")
+            print("It falls to the floor and slowly disintegrates into ash.")
+            print("You look around to see a door at one end of the chamber.")
+            print("You walk up to the door and open it.")
+            print("It leads outside to a grove. You have escaped.")
+
+            self.victory()
 
     def game_over(self):
         print("--------------------------")
         print("You died! You slayed", self.enemies_slain, "enemies.")
+        print("Thanks for playing!")
+        print("--------------------------")
+
+    def victory(self):
+        print("--------------------------")
+        print("You won! You slayed", self.enemies_slain, "enemies.")
         print("Thanks for playing!")
         print("--------------------------")
 
