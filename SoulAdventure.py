@@ -165,10 +165,9 @@ class SoulAdventure:
         print("You stand at the hallway entrance to the room looking in.")
         print("You see tables by the torches with various pieces of equipment nearby.")
         print("It is too dim to tell what is on them from here.")
-        print("You think to yourself: 'Should I walk in and see what is in here or stick to the walls of the chamber and stay in the shadows.")
         print("--------------------------")
 
-        choice = input("Type 'investigate chamber' or 'stay in the shadows': ").lower()
+        choice = input("Type 'investigate chamber': ").lower()
 
         if choice == "investigate chamber": 
             self.investgate_chamber()
@@ -338,7 +337,55 @@ class SoulAdventure:
             print("You walk up to the door and open it.")
             print("It leads outside to a grove. You have escaped.")
 
+            self.enemies_slain = self.enemies_slain + 1
+
             self.victory()
+    
+    def try_to_escape(self):
+        if self.sedated:
+            print("--------------------------")
+            print("While the monster recovers, you search for an exit.")
+            print("You see one on the other side of the chamber.")
+            print("You make a run for it but the sedative slows you down.")
+
+            choice = input("Enter 'keep running' or 'try to slow monster': ").lower()
+
+            if choice == "keep running":
+                self.keep_running()
+            elif choice == "try to slow monster":
+                self.try_to_slow_monster()
+            else:
+                print(self.invalid_choice)
+                self.try_to_escape()
+        else:
+            print("--------------------------")
+            print("While the monster recovers, you search for an exit.")
+            print("You see one on the other side of the chamber.")
+            print("You make a run for it.")
+            print("You make it the door, open it and run through. It leads to a sunlit grove.")
+            print("You look behind you to see the monster standing at the chamber entrance.")
+            print("A vampire! It cannot come out into the sunlight. You have escaped!")
+
+            self.victory()
+ 
+
+    def keep_running(self):
+        print("--------------------------")
+        print("You try to run for the exit but you are too sedated to make it.")
+        print("The monster catches you and ends you.")
+
+        self.game_over()
+
+    def try_to_slow_monster(self):
+        print("--------------------------")
+        print("You sloppily knock over one of the tables as the monster recovers.")
+        print("The table falls to the floor and body parts strew accross the floor.")
+        print("You run for the door hearing the monster struggle behind you.")
+        print("You make it the door, open it and run through. It leads to a sunlit grove.")
+        print("You look behind you to see the monster standing at the chamber entrance.")
+        print("A vampire! It cannot come out into the sunlight. You have escaped!")
+
+        self.victory()
 
     def game_over(self):
         print("--------------------------")
